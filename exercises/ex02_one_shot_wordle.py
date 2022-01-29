@@ -3,13 +3,13 @@
 __author__ = "730231293"
 
 wordle: str = "python"
-wordle_len: str = str(len(wordle))
+wordle_len: str = str((len(wordle)))
 secret: str = input("What is your " + wordle_len + "-letter guess? ")
 white_box: str = "\U00002B1C"
 green_box: str = "\U0001F7E9"
 yellow_box: str = "\U0001F7E8"
 i: int = 0
-result = str = ""
+result: str = ""
 
 
 while len(secret) != len(wordle):
