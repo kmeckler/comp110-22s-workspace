@@ -2,9 +2,9 @@
 
 __author__ = "730231293"
 
-white_box: str = "\U00002B1C"
-green_box: str = "\U0001F7E9"
-yellow_box: str = "\U0001F7E8"
+WHITE_BOX: str = "\U00002B1C"
+GREEN_BOX: str = "\U0001F7E9"
+YELLOW_BOX: str = "\U0001F7E8"
 
 
 def contains_char(wordle: str, character: str) -> bool:
@@ -19,24 +19,24 @@ def contains_char(wordle: str, character: str) -> bool:
 
 
 def emojified(guess: str, wordle: str) -> str:
-    """Returns a white box if False, a yellow if True but not a position match, and green if True and a position match."""
+    """Returns a white box if contains_char is False, a yellow if True but not a position match, and green if True and a position match."""
     assert len(guess) == len(wordle)
     j: int = 0
     result: str = ""
     while j < len(wordle):
         if guess[j] == wordle[j]:
-            result += green_box
+            result += GREEN_BOX
         else:
             if contains_char(wordle, guess[j]) is True:
-                result += yellow_box
+                result += YELLOW_BOX
             else:
-                result += white_box
+                result += WHITE_BOX
         j += 1  
     return result   
 
 
 def input_guess(expected_length: int) -> str:
-    """Ensures guess of correct character length."""
+    """Ensures user inputs a guess of the correct character length."""
     prompt = input("Enter a " + str(expected_length) + " character word: ")
     while len(prompt) != expected_length:
         prompt = input("That wasn't " + str(expected_length) + " chars! Try again: ")
@@ -46,5 +46,21 @@ def input_guess(expected_length: int) -> str:
 def main() -> None:
     """The entrypoint of the program and main game loop."""
     n: int = 1
-    print("=== Turn " + str(n) + "/6 ===")
-    input_guess(6)
+    wordle: str = "codes"
+    len_wordle: int = len(wordle)
+    won: bool = False
+    while n < len(wordle) + 2 and not won:
+        print("=== Turn " + str(n) + "/" + str(len_wordle + 1) + "===")
+        guess: str = input_guess(len_wordle)
+        print(emojified(guess, wordle))
+        if guess == wordle:
+            print("You won in " + str(n) + "/" + str(len_wordle + 1) + " turns!")
+            won = True
+            return
+        else:
+            n += 1
+    print("X/" + str(len_wordle + 1) + "- Sorry, try again tomorrow!")
+
+
+if __name__ == "__main__":
+    main()
