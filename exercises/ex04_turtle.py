@@ -3,24 +3,27 @@
 __author__ = 730231293
 
 from turtle import Turtle, colormode, done
+from random import randint
 colormode(255)
+turtle = Turtle()
 
 
-def main():
-    turtle = Turtle()
-    turtle.speed(5)
+def main() -> None:
+    """The entrypoint of my scene."""
+    turtle.speed(300)
     sky(turtle, -450, 0, "light blue")
     sky(turtle, -50, 0, "black")
+    stars(turtle)
     building(turtle, 0, 0)
     roof(turtle, 0, 100)
     building(turtle, -300, 0)
     roof(turtle, -300, 100)
-    ground(turtle, -400, 0)
     roof_topper(turtle, 50, 200)
+    ground(turtle, -450, 0)
     done()
 
 
-def geometric_shape_repeater(turtle, x: int, y: int, forward: int, left: int, sides: int):
+def geometric_shape_repeater(turtle, x: int, y: int, forward: int, left: int, sides: int) -> None:
     """Allows shapes that are common in geometric art (i.e. rectangles, triangles, squares) to be drawn three times."""
     i: int = 0
     j: int = 0
@@ -40,7 +43,7 @@ def geometric_shape_repeater(turtle, x: int, y: int, forward: int, left: int, si
         i = 0
 
 
-def building(turtle, x: int, y: int):
+def building(turtle, x: int, y: int) -> None:
     """Draws the square-shaped buildings by making use of geometric_shape_repeater."""
     turtle.penup()
     turtle.goto(x, y)
@@ -48,7 +51,7 @@ def building(turtle, x: int, y: int):
     geometric_shape_repeater(turtle, 0, 0, 100, 90, 4)
 
 
-def roof(turtle, x: int, y: int):
+def roof(turtle, x: int, y: int) -> None:
     """Draws the triangular-shaped roofs by making use of geometric_shape_repeater."""
     turtle.penup()
     turtle.goto(x, y)
@@ -56,7 +59,7 @@ def roof(turtle, x: int, y: int):
     geometric_shape_repeater(turtle, 0, 100, 100, 120, 3)
 
 
-def roof_topper(turtle, x: int, y: int):
+def roof_topper(turtle, x: int, y: int) -> None:
     """Adds three yellow circles to one of the serene temple buildings -- for light when it is dark out!"""
     i: int = 0
     increment: int = 50
@@ -64,7 +67,7 @@ def roof_topper(turtle, x: int, y: int):
     turtle.goto(x, y)
     turtle.pendown()
     while i < 3:
-        turtle.fill_color(215, 172, 0)
+        turtle.color(215, 172, 0)
         turtle.begin_fill()
         turtle.circle(10)
         turtle.end_fill()
@@ -75,16 +78,17 @@ def roof_topper(turtle, x: int, y: int):
         increment += increment
 
 
-def ground(turtle, x: int, y: int):
+def ground(turtle, x: int, y: int) -> None:
     """Adds a line of green to the base of the buildings, representing the ground."""
     turtle.color(0, 87, 12)
+    turtle.width(5)
     turtle.penup()
     turtle.goto(x, y)
     turtle.pendown()
-    turtle.forward(700)
+    turtle.forward(800)
 
 
-def sky(turtle, x: int, y: int, color: str):
+def sky(turtle, x: int, y: int, color: str) -> None:
     """Generates a square of color of choice to represent the sky."""
     i: int = 0
     turtle.color(color)
@@ -97,6 +101,19 @@ def sky(turtle, x: int, y: int, color: str):
         turtle.left(90)
         i += 1
     turtle.end_fill()
+
+
+def stars(turtle) -> None:
+    """Requirement: Try something fun! This function uses randint() and circle() to add stars to the night sky."""
+    i: int = 0
+    while i < 200:
+        turtle.color("white")
+        turtle.begin_fill()
+        turtle.penup()
+        turtle.goto(randint(0, 600), randint(50, 600))
+        turtle.circle(1)
+        turtle.end_fill()
+        i += 1
 
 
 if __name__ == "__main__":
