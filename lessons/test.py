@@ -25,17 +25,28 @@
 #         i = i + 1
 #     return new_word
 
-x: float = 5.0
-y: float = 3.0
+# x: float = 5.0
+# y: float = 3.0
 
-x = x - 1
-if x < y:
-    z = x ** y / 2
-else:
-    if x == y: 
-        z = y % x
-    else: 
-        x = x / 2
-        z = y - x
-    z = z + 1
-print(z)
+# x = x - 1
+# if x < y:
+#     z = x ** y / 2
+# else:
+#     if x == y: 
+#         z = y % x
+#     else: 
+#         x = x / 2
+#         z = y - x
+#     z = z + 1
+# print(z)
+
+# ys: list[int] = [110, 120]
+# for y in ys: 
+#     print(y)
+
+i: int = 0
+ys: list[int] = [110, 120]
+while i < len(ys):
+    y: int = ys[i]
+    print(y)
+    i += 1
