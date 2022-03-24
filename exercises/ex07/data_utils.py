@@ -48,8 +48,8 @@ def head(column_table: dict[str, list[str]], rows: int) -> dict[str, list[str]]:
     for column in column_table: 
         i: int = 0
         column_selection: list[str] = []
-        if rows >= len(column_table[column]):
-            rows = len(column_table[column]) - 1
+        if rows >= len(column_table):
+            rows = len(column_table) - 1
         while i < rows:
             item: str = column_table[column][i]
             column_selection.append(item)
